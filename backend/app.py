@@ -1,3 +1,4 @@
+from flask_cors import CORS # Import CORS
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pickle
@@ -6,7 +7,12 @@ TFIDF_PATH = "tfidf.pkl"
 MODEL_PATH = "model.pkl"
 
 app = Flask(__name__)
-CORS(app)
+
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://fake-news-detection-project-9vt39vm4z.vercel.app" # <--- YOUR VERCEL URL
+]
+CORS(app, resources={r"/*": {"origins": ALLOWED_ORIGINS}})
 
 # load
 with open(TFIDF_PATH, "rb") as f:
