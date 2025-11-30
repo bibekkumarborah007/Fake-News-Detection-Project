@@ -8,5 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+<<<<<<< HEAD
   base: process.env.VITE_BASE_PATH || "/Fake-News-Detection-Project/tree/main/frontend"
 });
+=======
+});
+>>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
