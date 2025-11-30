@@ -37,5 +37,9 @@ def predict():
     return jsonify({"label": label, "confidence": float(conf)})
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     # app.run(host="127.0.0.1", port=5000, debug=True)
     app.run(host="0.0.0.0", port=5000, debug=True)
+=======
+    app.run(host="127.0.0.1", port=5000, debug=True)
+>>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
