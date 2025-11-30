@@ -3,6 +3,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import LightRays from "./LightRays";
 import React, { useEffect, useState } from "react";
 
+const API_URL = 'https://fake-news-detection-project-2.onrender.com/predict';
 
 const PHRASES = [
   "Pattern-based fake news scan",
@@ -133,7 +134,7 @@ export default function App() {
     setLoading(true);
     setResult(null);
     try {
-      const res = await fetch("http://127.0.0.1:5000/predict", {
+      const res = await fetch("https://fake-news-detection-project-2.onrender.com/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: payload }),
