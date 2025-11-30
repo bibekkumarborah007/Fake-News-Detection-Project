@@ -134,11 +134,13 @@ export default function App() {
     setLoading(true);
     setResult(null);
     try {
-      const res = await fetch("https://fake-news-detection-project-2.onrender.com/predict", {
+      const BACKEND = (import.meta.env.VITE_API_URL || "https://fake-news-detection-project-2.onrender.com").replace(/\/$/, "");
+      const res = await fetch(`${BACKEND}/predict`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: payload }),
       });
+
       const data = await res.json().catch(() => null);
       if (!res.ok) {
         setResult({ label: data?.error ?? `HTTP ${res.status}`, confidence: null });
