@@ -88,39 +88,50 @@ The system consists of:
 ## 📌 System Architecture
 
 ```
-User → Frontend → Flask API → Preprocess → TF-IDF → SVM → Output → UI Display
+User → Frontend → Flask API → Preprocess → TF-IDF → SVM → JSON Output → UI Display
 ```
 
 ---
 
 ## 📌 Model Description
 
-### 📂 Dataset: WELFake
-- 72,134 samples  
-- 35,028 real  
-- 37,106 fake  
+## 📂 Dataset (WELFake)
+- Total Samples: 72,134  
+- Real: 35,028  
+- Fake: 37,106  
+- Balanced dataset  
+- Sources: Kaggle, McIntire, BuzzFeed, Reuters  
 
-### 🔧 Preprocessing:
-- Remove duplicates  
-- Lowercase  
-- Remove punctuation, URLs, numbers  
-- Tokenization  
-- Stopword removal  
+
+## 🧹 Preprocessing Pipeline
+1. Remove duplicates  
+2. Merge title + text  
+3. Lowercase conversion  
+4. Remove punctuation, URLs, numbers  
+5. Tokenization  
+6. Stopword removal  
+7. Lemmatization  
+8. Cleaned text saved as `content_clean` 
 
 ### 📊 Feature Extraction:
 - TF-IDF vectorization  
 - max_features limit  
 
-### 🤖 Models Trained:
+## 🤖 Model Details
+Trained models:
 - Logistic Regression  
-- Naïve Bayes  
-- SVM ⭐ (Best performer)  
+- Naive Bayes  
 - Random Forest  
 - Gradient Boosting  
 - XGBoost  
 - LightGBM  
+- **SVM (Best: ~97% accuracy)**
 
 ### 🏆 Best Model: **SVM (~97% accuracy)**
+
+### Saved Files
+- `model.pkl` – SVM classifier  
+- `tfidf.pkl` – TF-IDF vectorizer  
 
 ---
 
@@ -139,9 +150,49 @@ User → Frontend → Flask API → Preprocess → TF-IDF → SVM → Output →
 
 ### ☁ Deployment
 - Frontend: Vercel / Netlify  
-- Backend: Render / Railway  
+- Backend: Render / Railway
+VITE_API_URL="https://your-backend-url.com"
 
 ---
+## 📁 Project Structure
+```
+FND/
+│── backend/
+│   ├── app.py
+│   ├── model.pkl
+│   ├── tfidf.pkl
+│   ├── requirements.txt
+│
+│── frontend/
+│   ├── Assets/
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│
+│── node_modules/
+│── howToStart/
+│── README.md
+```
+---
+
+## 🛠 Installation
+
+### Backend:
+```
+cd backend
+pip install -r requirements.txt
+python app.py
+```
+
+### Frontend:
+```
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
 
 ## 📌 Pros & Cons
 
@@ -153,11 +204,13 @@ User → Frontend → Flask API → Preprocess → TF-IDF → SVM → Output →
 - Easy to deploy  
 
 ### ❌ Cons
-- Cannot actually fact-check  
+- System detects patterns, not factual truth
+- Cannot actually fact-check
 - Limited context understanding  
 - Text-only (no images/videos)  
 - Sensitive to very short inputs  
-- Model may miss new fake patterns  
+- Model may miss new fake patterns
+- TF-IDF does not understand deep context   
 
 ---
 
