@@ -6,7 +6,8 @@ TFIDF_PATH = "tfidf.pkl"
 MODEL_PATH = "model.pkl"
 
 app = Flask(__name__)
-CORS(app, origins="https://fake-news-detection-project-4ypcc1xvc.vercel.app")
+CORS(app)
+# CORS(app, origins="https://fake-news-detection-project-4ypcc1xvc.vercel.app")
 
 # load
 with open(TFIDF_PATH, "rb") as f:

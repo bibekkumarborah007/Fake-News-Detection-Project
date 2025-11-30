@@ -3,6 +3,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import LightRays from "./LightRays";
 import React, { useEffect, useState } from "react";
 
+
 const PHRASES = [
   "Pattern-based fake news scan",
   "SVM accuracy-driven detection",
@@ -132,8 +133,7 @@ export default function App() {
     setLoading(true);
     setResult(null);
     try {
-      const BACKEND = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
-      const res = await fetch(`${BACKEND.replace(/\/$/, "")}/predict`, {
+      const res = await fetch("http://127.0.0.1:5000/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: payload }),
