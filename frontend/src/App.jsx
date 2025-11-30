@@ -133,51 +133,26 @@ export default function App() {
     if (!payload) return;
     setLoading(true);
     setResult(null);
-
-    // timeout helper
-    const timeout = (ms) => new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), ms));
-
     try {
       const BACKEND = (import.meta.env.VITE_API_URL || "https://fake-news-detection-project-2.onrender.com").replace(/\/$/, "");
-      const controller = new AbortController();
-      const signal = controller.signal;
+      const res = await fetch(`${BACKEND}/predict`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: payload }),
+      });
 
-      // optional: cancel after 12s
-      const cancel = setTimeout(() => controller.abort(), 12000);
-
-      console.log("Calling backend:", `${BACKEND}/predict`);
-      const res = await Promise.race([
-        fetch(`${BACKEND}/predict`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: payload }),
-          signal,
-        }),
-        timeout(12000)
-      ]);
-
-      clearTimeout(cancel);
-
-      // helpful debugging
-      console.log("Response status:", res.status);
       const data = await res.json().catch(() => null);
-
       if (!res.ok) {
-        console.error("Backend error body:", data);
         setResult({ label: data?.error ?? `HTTP ${res.status}`, confidence: null });
       } else {
         setResult({ label: data.label ?? data.prediction ?? "Unknown", confidence: data.confidence ?? null });
       }
-    } catch (err) {
-      console.error("Detect() error:", err);
-      // show meaningful message
-      const message = err.name === "AbortError" ? "Request timed out" : (err.message || "Backend not connected");
-      setResult({ label: message, confidence: null });
+    } catch {
+      setResult({ label: "Backend not connected", confidence: null });
     } finally {
       setLoading(false);
     }
   }
-
 
   return (
     <div className="relative min-h-screen bg-black text-white antialiased" style={{ fontFamily: "Inter, system-ui" }}>
