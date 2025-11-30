@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Fake-News-Detection-Project
 7th Semester Group Project
 # Fake News Detection System (FND)
@@ -95,6 +96,44 @@ User → Frontend → Flask API → Preprocess → TF-IDF → SVM → JSON Outpu
 
 ## 📌 Model Description
 
+=======
+# 📰 Fake News Detection System (FND)
+### **TF-IDF + SVM | Machine Learning + NLP | Flask API + React UI**
+
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![React](https://img.shields.io/badge/Frontend-React-blue)
+![Flask](https://img.shields.io/badge/Backend-Flask-orange)
+![License](https://img.shields.io/badge/License-Academic-lightgrey)
+
+## 🚀 Overview
+The **Fake News Detection System (FND)** is an end-to-end Machine Learning + NLP web application that classifies news text as **Real** or **Fake** using:
+- TF-IDF vectorization
+- SVM classifier
+- Flask backend API
+- React + Tailwind frontend
+
+It is trained on **72,134 news articles** and delivers **~97% accuracy**.
+
+---
+
+## 📌 Features
+- Real-time Fake/Real detection  
+- TF-IDF text feature extraction  
+- SVM model (best performer)  
+- Flask REST API  
+- Modern React + Tailwind UI  
+- Fast prediction (<1 sec)  
+- Confidence-based results  
+
+---
+
+## 🏗 Architecture
+User → React Frontend → Flask API → Preprocessing → TF-IDF → SVM → JSON Output → UI Display
+
+---
+
+>>>>>>> 57d96af (Fake News Detection Project Upload)
 ## 📂 Dataset (WELFake)
 - Total Samples: 72,134  
 - Real: 35,028  
@@ -102,6 +141,10 @@ User → Frontend → Flask API → Preprocess → TF-IDF → SVM → JSON Outpu
 - Balanced dataset  
 - Sources: Kaggle, McIntire, BuzzFeed, Reuters  
 
+<<<<<<< HEAD
+=======
+---
+>>>>>>> 57d96af (Fake News Detection Project Upload)
 
 ## 🧹 Preprocessing Pipeline
 1. Remove duplicates  
@@ -111,11 +154,17 @@ User → Frontend → Flask API → Preprocess → TF-IDF → SVM → JSON Outpu
 5. Tokenization  
 6. Stopword removal  
 7. Lemmatization  
+<<<<<<< HEAD
 8. Cleaned text saved as `content_clean` 
 
 ### 📊 Feature Extraction:
 - TF-IDF vectorization  
 - max_features limit  
+=======
+8. Cleaned text saved as `content_clean`  
+
+---
+>>>>>>> 57d96af (Fake News Detection Project Upload)
 
 ## 🤖 Model Details
 Trained models:
@@ -127,14 +176,18 @@ Trained models:
 - LightGBM  
 - **SVM (Best: ~97% accuracy)**
 
+<<<<<<< HEAD
 ### 🏆 Best Model: **SVM (~97% accuracy)**
 
+=======
+>>>>>>> 57d96af (Fake News Detection Project Upload)
 ### Saved Files
 - `model.pkl` – SVM classifier  
 - `tfidf.pkl` – TF-IDF vectorizer  
 
 ---
 
+<<<<<<< HEAD
 ## 📌 Implementation Summary
 
 ### 🔙 Backend (Flask)
@@ -154,6 +207,65 @@ Trained models:
 VITE_API_URL="https://your-backend-url.com"
 
 ---
+=======
+## 🔙 Backend (Flask API)
+
+### Endpoint
+POST /predict
+
+### Request:
+```
+{
+  "text": "Example news article..."
+}
+```
+
+### Response:
+```
+{
+  "label": "Fake",
+  "confidence": 0.94
+}
+```
+
+Backend workflow:
+- Load model + vectorizer  
+- Preprocess text  
+- Vectorize input  
+- Predict via SVM  
+- Return JSON  
+
+---
+
+## 🎨 Frontend (React + Tailwind)
+Features:
+- Clean UI  
+- Input field for news text  
+- Prediction card  
+- Loading animation  
+- Color-coded Real/Fake output  
+- Fully responsive  
+
+Run:
+```
+npm install
+npm run dev
+```
+
+---
+
+## 🚀 Deployment
+Frontend → Vercel / Netlify  
+Backend → Render / Railway / AWS EC2  
+
+Set environment variable:
+```
+VITE_API_URL="https://your-backend-url.com"
+```
+
+---
+
+>>>>>>> 57d96af (Fake News Detection Project Upload)
 ## 📁 Project Structure
 ```
 FND/
@@ -173,6 +285,10 @@ FND/
 │── howToStart/
 │── README.md
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> 57d96af (Fake News Detection Project Upload)
 ---
 
 ## 🛠 Installation
@@ -193,6 +309,7 @@ npm run dev
 
 ---
 
+<<<<<<< HEAD
 
 ## 📌 Pros & Cons
 
@@ -229,6 +346,26 @@ The Fake News Detection System (FND) effectively uses **TF-IDF pattern analysis*
 ---
 
 ## 📁 Project Members
+=======
+## ⚠ Limitations
+- System detects patterns, not factual truth  
+- Text-only detection  
+- May misclassify vague or very short text  
+- TF-IDF does not understand deep context  
+
+---
+
+## 🔮 Future Enhancements
+- BERT / RoBERTa / DistilBERT  
+- Image + text multimodal detection  
+- Chrome extension  
+- Real-time stream detection  
+- SHAP / LIME explainability  
+
+---
+
+## 👥 Team
+>>>>>>> 57d96af (Fake News Detection Project Upload)
 - Ayush Limbu  
 - Bibek Kumar Borah  
 - Devajani Sonowal  
@@ -238,5 +375,9 @@ The Fake News Detection System (FND) effectively uses **TF-IDF pattern analysis*
 ---
 
 ## 📜 License
+<<<<<<< HEAD
 This project is developed for academic purposes by the CSE 7th Semester team.
 
+=======
+Academic Project – Dhemaji Engineering College (CSE 7th Semester, 2025)
+>>>>>>> 57d96af (Fake News Detection Project Upload)
