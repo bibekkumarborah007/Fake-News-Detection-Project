@@ -6,7 +6,7 @@ TFIDF_PATH = "tfidf.pkl"
 MODEL_PATH = "model.pkl"
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="https://fake-news-detection-project-4ypcc1xvc.vercel.app")
 
 # load
 with open(TFIDF_PATH, "rb") as f:
@@ -39,4 +39,5 @@ def predict():
 if __name__ == "__main__":
     # For production / Render, bind to 0.0.0.0
     app.run(host="0.0.0.0", port=5000, debug=True)
+    
 
