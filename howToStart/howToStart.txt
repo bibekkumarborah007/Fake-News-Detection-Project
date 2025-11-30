@@ -1,0 +1,28 @@
+#=====================backend====================
+to start:
+1. Go to backend folder using cd 
+2. conda activate ml
+3. python app.py
+
+to Stop/exit:
+1. Ctrl + c
+2. conda deactivate ml
+
+Terminal must show: Running on http://127.0.0.1:5000
+
+
+
+
+
+
+
+#======================frontend================= 
+to start: 
+1. Go to frontend folder 
+2. npm run dev
+
+Terminal must show: Local:   http://localhost:5173/
+
+to stop/exit: 
+1.ctrl + c then Enter Y
+

@@ -1,0 +1,121 @@
+"""
+Flask app that loads tfidf.pkl and model.pkl and exposes:
+  GET  /health      -> {"status": "ok"}
+  POST /predict     -> {"label": "Real"|"Fake", "confidence": 0.0-1.0}
+
+Run: python app.py
+Production: gunicorn -w 4 -b 0.0.0.0:5001 app:app
+"""
+
+import logging
+import pickle
+import sys
+from typing import Any, Dict
+
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+import numpy as np
+from config import HOST, PORT, LABEL_MAP, MIN_TEXT_LENGTH, MODEL_RETURNS_LABEL_STR
+
+# ---------- Logging ----------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s - %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+logger = logging.getLogger("fake-news-api")
+
+# ---------- App ----------
+app = Flask(__name__)
+# For dev: allow all origins. For production, set specific origins: CORS(app, origins=["https://yourdomain.com"])
+CORS(app)
+
+# ---------- Load artifacts ----------
+TFIDF_PATH = "tfidf.pkl"
+MODEL_PATH = "model.pkl"
+
+try:
+    logger.info("Loading TF-IDF vectorizer from %s", TFIDF_PATH)
+    with open(TFIDF_PATH, "rb") as f:
+        tfidf = pickle.load(f)
+
+    logger.info("Loading ML model from %s", MODEL_PATH)
+    with open(MODEL_PATH, "rb") as f:
+        model = pickle.load(f)
+except Exception as e:
+    logger.exception("Failed to load model artifacts: %s", e)
+    raise
+
+# ---------- Helpers ----------
+def _to_label(pred: Any) -> str:
+    """Normalize model prediction into 'Real' or 'Fake'."""
+    if MODEL_RETURNS_LABEL_STR:
+        pred_str = str(pred).strip().lower()
+        return "Real" if "real" in pred_str else "Fake"
+    try:
+        key = int(pred)
+        return LABEL_MAP.get(key, str(pred))
+    except Exception:
+        return str(pred)
+
+def _get_confidence(X_vec) -> float:
+    """Return confidence as a float between 0 and 1."""
+    if hasattr(model, "predict_proba"):
+        probs = model.predict_proba(X_vec)[0]
+        return float(max(probs))
+    elif hasattr(model, "decision_function"):
+        df = model.decision_function(X_vec)
+        if isinstance(df, np.ndarray):
+            df = df[0]
+        try:
+            prob = 1.0 / (1.0 + np.exp(-float(df)))
+            return float(prob)
+        except Exception:
+            return 0.0
+    else:
+        return 1.0
+
+# ---------- Routes ----------
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok"}), 200
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    payload = request.get_json(silent=True)
+    if not payload or "text" not in payload:
+        return jsonify({"error": "Request body must be JSON with 'text' field."}), 400
+
+    raw_text = payload.get("text", "")
+    if not isinstance(raw_text, str) or len(raw_text.strip()) < MIN_TEXT_LENGTH:
+        return jsonify({"error": f"'text' must be a non-empty string (min {MIN_TEXT_LENGTH} chars)."}), 400
+
+    text = raw_text.strip()
+    logger.info("Received text (len=%d) for prediction", len(text))
+
+    try:
+        X_vec = tfidf.transform([text])
+    except Exception as e:
+        logger.exception("TF-IDF transformation failed: %s", e)
+        return jsonify({"error": "Failed to transform text for prediction."}), 500
+
+    try:
+        pred_raw = model.predict(X_vec)[0]
+        label = _to_label(pred_raw)
+        confidence = _get_confidence(X_vec)
+    except Exception as e:
+        logger.exception("Model prediction failed: %s", e)
+        return jsonify({"error": "Model prediction failed."}), 500
+
+    response: Dict[str, Any] = {
+        "label": label,
+        "confidence": float(confidence)
+    }
+    logger.info("Prediction result: %s (conf=%.4f)", label, confidence)
+    return jsonify(response), 200
+
+# ---------- Run ----------
+if __name__ == "__main__":
+    logger.info("Starting Flask app on %s:%d", HOST, PORT)
+    app.run(host=HOST, port=PORT, debug=False)
