@@ -7,7 +7,7 @@
 ---
 
 ## 📌 Hosted Links
-# Frontend (React + Vercel):
+### Frontend (React + Vercel):
 
 ```
 https://fake-news-detection-project-9vt39vm4z.vercel.app/
