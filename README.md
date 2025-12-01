@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # Fake-News-Detection-Project
 7th Semester Group Project
 # Fake News Detection System (FND)
