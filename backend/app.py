@@ -40,6 +40,17 @@ def predict():
 
     return jsonify({"label": label, "confidence": float(conf)})
 
+# if __name__ == "__main__":
+#     # Render expects to bind to 0.0.0.0
+#     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
 if __name__ == "__main__":
-    # Render expects to bind to 0.0.0.0
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", required=True)
+    parser.add_argument("--port", required=True)
+    args = parser.parse_args()
+
+    app.run(
+        host=args.host,
+        port=int(args.port),
+        debug=False
+    )
