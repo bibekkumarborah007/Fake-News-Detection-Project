@@ -97,7 +97,7 @@ User → Frontend → Flask API → Preprocess → TF-IDF → SVM → JSON Outpu
 
 =======
 =======
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
+
 # 📰 Fake News Detection System (FND)
 ### **TF-IDF + SVM | Machine Learning + NLP | Flask API + React UI**
 
@@ -134,8 +134,7 @@ User → React Frontend → Flask API → Preprocessing → TF-IDF → SVM → J
 
 ---
 
-<<<<<<< HEAD
->>>>>>> 57d96af (Fake News Detection Project Upload)
+(Fake News Detection Project Upload)
 =======
 >>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
 ## 📂 Dataset (WELFake)
@@ -143,16 +142,13 @@ User → React Frontend → Flask API → Preprocessing → TF-IDF → SVM → J
 - Real: 35,028  
 - Fake: 37,106  
 - Balanced dataset  
-- Sources: Kaggle, McIntire, BuzzFeed, Reuters  
+- Sources: Kaggle, McIntire, BuzzFeed, Reuters
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 =======
 ---
->>>>>>> 57d96af (Fake News Detection Project Upload)
+(Fake News Detection Project Upload)
 =======
 ---
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
 
 ## 🧹 Preprocessing Pipeline
 1. Remove duplicates  
@@ -178,7 +174,6 @@ User → React Frontend → Flask API → Preprocessing → TF-IDF → SVM → J
 8. Cleaned text saved as `content_clean`  
 
 ---
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
 
 ## 🤖 Model Details
 Trained models:
@@ -190,22 +185,17 @@ Trained models:
 - LightGBM  
 - **SVM (Best: ~97% accuracy)**
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ### 🏆 Best Model: **SVM (~97% accuracy)**
 
 =======
->>>>>>> 57d96af (Fake News Detection Project Upload)
 =======
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
+
 ### Saved Files
 - `model.pkl` – SVM classifier  
 - `tfidf.pkl` – TF-IDF vectorizer  
 
 ---
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ## 📌 Implementation Summary
 
 ### 🔙 Backend (Flask)
@@ -227,7 +217,7 @@ VITE_API_URL="https://your-backend-url.com"
 ---
 =======
 =======
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
+
 ## 🔙 Backend (Flask API)
 
 ### Endpoint
@@ -285,10 +275,8 @@ VITE_API_URL="https://your-backend-url.com"
 
 ---
 
-<<<<<<< HEAD
->>>>>>> 57d96af (Fake News Detection Project Upload)
+(Fake News Detection Project Upload)
 =======
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
 ## 📁 Project Structure
 ```
 FND/
@@ -308,14 +296,9 @@ FND/
 │── howToStart/
 │── README.md
 ```
-<<<<<<< HEAD
-<<<<<<< HEAD
 =======
-
->>>>>>> 57d96af (Fake News Detection Project Upload)
+(Fake News Detection Project Upload)
 =======
-
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
 ---
 
 ## 🛠 Installation
@@ -335,9 +318,6 @@ npm run dev
 ```
 
 ---
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 ## 📌 Pros & Cons
 
@@ -373,32 +353,9 @@ The Fake News Detection System (FND) effectively uses **TF-IDF pattern analysis*
 
 ---
 
-## 📁 Project Members
-=======
-=======
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
-## ⚠ Limitations
-- System detects patterns, not factual truth  
-- Text-only detection  
-- May misclassify vague or very short text  
-- TF-IDF does not understand deep context  
-
----
-
-## 🔮 Future Enhancements
-- BERT / RoBERTa / DistilBERT  
-- Image + text multimodal detection  
-- Chrome extension  
-- Real-time stream detection  
-- SHAP / LIME explainability  
-
----
-
 ## 👥 Team
-<<<<<<< HEAD
->>>>>>> 57d96af (Fake News Detection Project Upload)
+(Fake News Detection Project Upload)
 =======
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
 - Ayush Limbu  
 - Bibek Kumar Borah  
 - Devajani Sonowal  
@@ -408,13 +365,4 @@ The Fake News Detection System (FND) effectively uses **TF-IDF pattern analysis*
 ---
 
 ## 📜 License
-<<<<<<< HEAD
-<<<<<<< HEAD
-This project is developed for academic purposes by the CSE 7th Semester team.
-
-=======
 Academic Project – Dhemaji Engineering College (CSE 7th Semester, 2025)
->>>>>>> 57d96af (Fake News Detection Project Upload)
-=======
-Academic Project – Dhemaji Engineering College (CSE 7th Semester, 2025)
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
