@@ -4,6 +4,16 @@
 ## Software Requirements Specification (SRS)
 ### Version 1.0
 
+---
+
+## 📌 Hosted Links
+
+```
+Vercel: https://fake-news-detection-project-9vt39vm4z.vercel.app/
+```
+
+---
+
 ## 📌 Introduction
 
 ### 🎯 Purpose
@@ -136,7 +146,7 @@ User → React Frontend → Flask API → Preprocessing → TF-IDF → SVM → J
 
 (Fake News Detection Project Upload)
 =======
->>>>>>> 57d96afbd7a562b1276f6caf1da3d81a31146800
+
 ## 📂 Dataset (WELFake)
 - Total Samples: 72,134  
 - Real: 35,028  
